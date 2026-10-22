@@ -1,0 +1,6 @@
+const menuToggle=document.querySelector("#menuToggle");const navLinks=document.querySelector("#navLinks");
+menuToggle.addEventListener("click",()=>{const open=navLinks.classList.toggle("mobile-open");navLinks.classList.toggle("hidden",!open);menuToggle.setAttribute("aria-expanded",String(open));menuToggle.innerHTML=open?'<i data-lucide="x"></i>':'<i data-lucide="menu"></i>';if(window.lucide)lucide.createIcons();});
+document.querySelectorAll("#navLinks a").forEach(a=>a.addEventListener("click",()=>{navLinks.classList.remove("mobile-open");navLinks.classList.add("hidden");menuToggle.setAttribute("aria-expanded","false");}));
+document.querySelectorAll(".faq-question").forEach(button=>button.addEventListener("click",()=>{const answer=button.nextElementSibling;const open=button.getAttribute("aria-expanded")==="true";button.setAttribute("aria-expanded",String(!open));answer.classList.toggle("hidden",open);button.querySelector("span").textContent=open?"＋":"−";}));
+document.querySelector("#contactForm").addEventListener("submit",event=>{event.preventDefault();const name=new FormData(event.currentTarget).get("name");document.querySelector("#formMessage").textContent=`Thanks, ${name}! This demo form is validated locally. Connect a backend to send enquiries.`;event.currentTarget.reset();});
+if(window.lucide)lucide.createIcons();
